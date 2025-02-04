@@ -13,12 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::prefix('ajax')->group(function () {
+   Route::put('books/{id}', fn() => null);
+   Route::delete('books/{id}', fn() => null);
+});
+
+Route::get('/{any}', function () {
     return view('welcome');
-});
-
-Route::get('/edit', function () {
-    return view('edit');
-});
-
-
+})->where('any', '.*');
