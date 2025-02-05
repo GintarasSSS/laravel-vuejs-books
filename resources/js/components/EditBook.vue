@@ -3,6 +3,17 @@
         <form v-if="Object.keys(book).length" @submit.prevent="submit">
             <div class="pt-10">
                 <h2 class="text-center text-3xl pb-10">Edit Book</h2>
+
+                <div v-if="responseMessage"
+                     :class="{
+                        'bg-green-50 border-green-400 text-green-700': responseMessage.type === 'success',
+                        'bg-red-50 border-red-400 text-red-700': responseMessage.type === 'error'
+                     }"
+                     class="p-4 border-l-4 rounded-md mb-10"
+                >
+                    {{ responseMessage.message }}
+                </div>
+
                 <div class="pb-10">
                     <TheLabel for="title_input">Title: </TheLabel>
                     <TextInput
@@ -12,6 +23,7 @@
                         v-model="book.title"
                     />
                 </div>
+
                 <div class="pb-10">
                     <TheLabel for="author_input">Author: </TheLabel>
                     <TextInput
@@ -21,6 +33,7 @@
                         v-model="book.author"
                     />
                 </div>
+
                 <div class="pb-10">
                     <TheLabel for="rating_input">Rating: </TheLabel>
                     <TextInput
@@ -35,7 +48,7 @@
                 </div>
             </div>
             <div class="text-center">
-                <TheButton />
+                <TheButton :isDisabled="isDisabled"/>
             </div>
         </form>
         <h2 v-else class="text-center text-3xl pb-10 pt-10">Book not found.</h2>
@@ -53,13 +66,17 @@
         data() {
             return {
                 book: {},
-                bookId: this.$route.params.id
+                bookId: this.$route.params.id,
+                isDisabled: false
             }
         },
         computed: {
             ...mapGetters(['allBooks']),
             bookFromStore() {
                 return this.allBooks.find((book) => parseInt(book.id) === parseInt(this.bookId)) || {};
+            },
+            responseMessage() {
+                return this.$store.state.responseMessage;
             }
         },
         watch: {
@@ -72,15 +89,20 @@
                 }
             }
         },
+        created() {
+            this.$store.commit('clearResponseMessage');
+        },
         components: {
             TextInput,
             TheLabel,
             TheButton
         },
         methods: {
-            ...mapActions(["getAllBooks"]),
-            submit() {
-                console.log('submit');
+            ...mapActions(["getAllBooks", "updateBook"]),
+            async submit() {
+                this.isDisabled = true;
+                await this.updateBook(this.book);
+                this.isDisabled = false;
             }
         }
     }
