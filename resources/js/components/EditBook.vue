@@ -5,15 +5,22 @@
                 <h2 class="text-center text-3xl pb-10">Edit Book</h2>
                 <div class="pb-10">
                     <TheLabel for="title_input">Title: </TheLabel>
-                    <TextInput placeholder="Title" id="title_input" />
+                    <TextInput placeholder="Title" id="title_input" :isRequired="true"/>
                 </div>
                 <div class="pb-10">
                     <TheLabel for="author_input">Author: </TheLabel>
-                    <TextInput placeholder="Author" id="author_input" />
+                    <TextInput placeholder="Author" id="author_input" :isRequired="true"/>
                 </div>
                 <div class="pb-10">
                     <TheLabel for="rating_input">Rating: </TheLabel>
-                    <TextInput placeholder="5" id="rating_input"/>
+                    <TextInput
+                        type="number"
+                        min="1"
+                        max="10"
+                        placeholder="5"
+                        id="rating_input"
+                        :isRequired="true"
+                    />
                 </div>
             </div>
             <div class="text-center">
