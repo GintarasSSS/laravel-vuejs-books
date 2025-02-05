@@ -15,7 +15,7 @@
                     <td class="px-6 py-4 border-r border-white">{{ book.author }}</td>
                     <td class="px-6 py-4 border-r border-white">{{ book.rating }}</td>
                     <td class="px-6 py-4 text-blue-600 whitespace-nowrap w-1 font-bold">
-                        <a :href="`/books/${book.id}/edit`" class="hover:underline">Edit</a>
+                        <router-link :to="`/books/${book.id}/edit`" class="hover:underline">Edit</router-link>
                         <span class="mx-2 text-black">|</span>
                         <a href="#" class="hover:underline text-red-600">Delete</a>
                     </td>
