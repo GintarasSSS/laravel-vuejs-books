@@ -1,7 +1,7 @@
 <template>
     <div class="py-10 w-9/12 ml-auto mr-auto">
         <div class="pb-10 text-end">
-            <TextInput placeholder="Search by book title ..." />
+            <TextInput placeholder="Search by book title ..." v-model.trim="search"/>
         </div>
 
         <BooksTable :books="books" />
@@ -15,10 +15,17 @@
 
     export default {
         name: 'BookListing',
+        data() {
+            return {
+                search: ''
+            }
+        },
         computed: {
             ...mapGetters(['allBooks']),
             books() {
-                return this.allBooks
+                return this.allBooks.filter(
+                    (book) => book.title.toLowerCase().includes(this.search.toLowerCase())
+                );
             }
         },
         created() {
