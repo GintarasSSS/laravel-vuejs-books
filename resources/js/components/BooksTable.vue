@@ -17,7 +17,12 @@
                     <td class="px-6 py-4 text-blue-600 whitespace-nowrap w-1 font-bold">
                         <router-link :to="`/books/${book.id}/edit`" class="hover:underline">Edit</router-link>
                         <span class="mx-2 text-black">|</span>
-                        <a href="#" class="hover:underline text-red-600">Delete</a>
+                        <a
+                            href="#" class="hover:underline text-red-600"
+                            @click.prevent="handleDeleteBook(book.id)"
+                        >
+                            Delete
+                        </a>
                     </td>
                 </tr>
             </tbody>
@@ -30,10 +35,20 @@
 </template>
 
 <script>
+    import {mapActions} from "vuex";
+
     export default {
         name: "BooksTable",
         props: {
             books: Array
+        },
+        methods: {
+            ...mapActions(['deleteBook']),
+            async handleDeleteBook(bookId) {
+                if (confirm('Are you sure you want to delete this book?')) {
+                    await this.deleteBook(bookId);
+                }
+            }
         }
     }
 </script>

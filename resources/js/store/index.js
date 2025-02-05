@@ -17,6 +17,9 @@ export default new Vuex.Store({
         },
         clearResponseMessage(state) {
             state.responseMessage = null;
+        },
+        removeBook(state, bookId) {
+            state.books = state.books.filter(book => book.id !== bookId);
         }
     },
     getters: {
@@ -51,6 +54,15 @@ export default new Vuex.Store({
                         message: "Network error. Please try again."
                     });
                 }
+            }
+        },
+        async deleteBook({ commit }, bookId) {
+            try {
+                await axios.delete(`/api/books/${bookId}`);
+
+                commit("removeBook", bookId)
+            } catch (er) {
+                console.error('Error deleting book.');
             }
         }
     }
