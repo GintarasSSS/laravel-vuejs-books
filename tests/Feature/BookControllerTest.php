@@ -10,7 +10,7 @@ class BookControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testUpdatesABookSuccessfully()
+    public function testUpdatesABookSuccessfully(): void
     {
         $book = Book::factory()->create();
 
@@ -31,7 +31,7 @@ class BookControllerTest extends TestCase
         $this->assertDatabaseHas('books', $data);
     }
 
-    public function testValidatesUpdateRequest()
+    public function testValidatesUpdateRequest(): void
     {
         $book = Book::factory()->create();
 
@@ -41,7 +41,7 @@ class BookControllerTest extends TestCase
             ->assertJsonValidationErrors(['title', 'author', 'rating']);
     }
 
-    public function testReturns404ForNonexistentBook()
+    public function testReturns404ForNonexistentBook(): void
     {
         $response = $this->json('PUT', "/api/books/9999", [
             'title' => 'Nonexistent',
@@ -52,7 +52,7 @@ class BookControllerTest extends TestCase
         $response->assertStatus(404);
     }
 
-    public function testFailsToUpdateWithInvalidRating()
+    public function testFailsToUpdateWithInvalidRating(): void
     {
         $book = Book::factory()->create();
 

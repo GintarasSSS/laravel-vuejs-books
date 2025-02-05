@@ -13,7 +13,7 @@ class UpdateServiceTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testUpdatesBookDataCorrectly()
+    public function testUpdatesBookDataCorrectly(): void
     {
         $book = Book::factory()->create([
             'title' => 'Old Title',
@@ -36,7 +36,7 @@ class UpdateServiceTest extends TestCase
         $this->assertEquals($data['rating'], $updatedBook->rating);
     }
 
-    public function testDoesNotUpdateWithInvalidData()
+    public function testDoesNotUpdateWithInvalidData(): void
     {
         Book::factory()->create();
 
@@ -54,7 +54,7 @@ class UpdateServiceTest extends TestCase
         $this->assertArrayHasKey('rating', $validator->errors()->toArray());
     }
 
-    public function testFailsToUpdateWithNegativeRating()
+    public function testFailsToUpdateWithNegativeRating(): void
     {
         Book::factory()->create();
 
