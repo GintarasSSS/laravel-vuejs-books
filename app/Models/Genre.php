@@ -4,17 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Book extends Model
+class Genre extends Model
 {
     use HasFactory;
-    use SoftDeletes;
 
     protected $guarded = [];
 
-    public function genres()
+    public function books()
     {
-        return $this->belongsToMany(Genre::class);
+        return $this->belongsToMany(Book::class);
     }
 }
