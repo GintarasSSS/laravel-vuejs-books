@@ -10,11 +10,11 @@ const routes = [
     },
     {
         path: '/books',
-        component: () => import('./components/BookListing.vue')
+        component: () => import('../components/BookListing.vue')
     },
     {
         path: '/books/:id/edit',
-        component: () => import('./components/EditBook.vue')
+        component: () => import('../components/EditBook.vue')
     }
 ];
 
