@@ -4,27 +4,36 @@
             <div class="pt-10">
                 <h2 class="text-center text-3xl pb-10">Edit Book</h2>
                 <div class="pb-10">
-                    <label class="w-20 inline-block">Title: </label>
-                    <input type="text" placeholder="Title" class="rounded-md border-gray-400 border-solid border-[1px] p-2 w-96">
+                    <TheLabel for="title_input">Title: </TheLabel>
+                    <TextInput placeholder="Title" id="title_input" />
                 </div>
                 <div class="pb-10">
-                    <label class="w-20 inline-block">Author: </label>
-                    <input type="text" placeholder="Author" class="rounded-md border-gray-400 border-solid border-[1px] p-2 w-96">
+                    <TheLabel for="author_input">Author: </TheLabel>
+                    <TextInput placeholder="Author" id="author_input" />
                 </div>
                 <div class="pb-10">
-                    <label class="w-20 inline-block">Rating: </label>
-                    <input type="text" placeholder="5" class="rounded-md border-gray-400 border-solid border-[1px] p-2 w-96">
+                    <TheLabel for="rating_input">Rating: </TheLabel>
+                    <TextInput placeholder="5" id="rating_input"/>
                 </div>
             </div>
             <div class="text-center">
-                <button class="text-white bg-orange py-2 px-4 rounded" type="reset">Submit</button>
+                <TheButton />
             </div>
         </form>
     </div>
 </template>
 
 <script>
+    import TextInput from "./layouts/TextInput.vue";
+    import TheLabel from "./layouts/TheLabel.vue";
+    import TheButton from "./layouts/TheButton.vue";
+
     export default {
         name: 'EditBook',
+        components: {
+            TextInput,
+            TheLabel,
+            TheButton
+        }
     }
 </script>
