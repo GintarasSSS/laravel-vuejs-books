@@ -40,7 +40,7 @@ curl --location 'http://127.0.0.1/api/genres/1/books' \
 
 ## UI
 
-- http://localhost/books
+- http://127.0.0.1/books
 
 ![img_1.png](img_1.png)
 ![img_2.png](img_2.png)
