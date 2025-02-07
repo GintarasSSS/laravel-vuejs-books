@@ -66,31 +66,18 @@
         data() {
             return {
                 book: {},
-                bookId: this.$route.params.id,
                 isDisabled: false
             }
         },
         computed: {
             ...mapGetters(['allBooks']),
-            bookFromStore() {
-                return this.allBooks.find((book) => parseInt(book.id) === parseInt(this.bookId)) || {};
-            },
             responseMessage() {
                 return this.$store.state.responseMessage;
             }
         },
-        watch: {
-            bookFromStore: {
-                immediate: true,
-                handler(newBook) {
-                    if (newBook) {
-                        this.book = { ...newBook };
-                    }
-                }
-            }
-        },
         created() {
             this.$store.commit('clearResponseMessage');
+            this.book = this.allBooks.find((book) => parseInt(book.id) === parseInt(this.$route.params.id)) || {};
         },
         components: {
             TextInput,
