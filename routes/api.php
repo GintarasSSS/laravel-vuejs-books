@@ -22,4 +22,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::apiResource('/books', BookController::class);
-Route::apiResource('/genres', GenreController::class);
+
+Route::prefix('genres')->group(function () {
+    Route::apiResource('/', GenreController::class);
+    Route::post('/{genre}/books', [GenreController::class, 'attach']);
+});

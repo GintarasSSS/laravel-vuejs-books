@@ -35,7 +35,7 @@ class GenreController extends Controller
         );
     }
 
-    public function update(UpdateRequest $request, Update $update, Genre $genre): JsonResponse
+    public function attach(UpdateRequest $request, Update $update, Genre $genre): JsonResponse
     {
         $genre = $update($request->validated(), $genre);
 
