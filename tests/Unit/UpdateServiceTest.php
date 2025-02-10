@@ -38,8 +38,6 @@ class UpdateServiceTest extends TestCase
 
     public function testDoesNotUpdateWithInvalidData(): void
     {
-        Book::factory()->create();
-
         $data = [
             'title' => '',
             'author' => '',
@@ -56,8 +54,6 @@ class UpdateServiceTest extends TestCase
 
     public function testFailsToUpdateWithNegativeRating(): void
     {
-        Book::factory()->create();
-
         $data = [
             'title' => 'Some Title',
             'author' => 'Some Author',
