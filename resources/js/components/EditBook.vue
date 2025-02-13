@@ -1,5 +1,5 @@
 <template>
-    <div class="w-1/5 text-left mr-auto ml-auto -mt-0 mb-0">
+    <div class="w-1/5 text-left mr-auto ml-auto mt-0 mb-0">
         <form v-if="Object.keys(book).length" @submit.prevent="submit">
             <div class="pt-10">
                 <h2 class="text-center text-3xl pb-10">Edit Book</h2>
